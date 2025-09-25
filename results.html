@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-4 mx-auto text-center" style="max-width: 600px;">
+        <h2 class="mb-4">Prediction Result for {{ result.disease }}</h2>
+
+        <!-- Gauge Chart Container -->
+        <div style="position: relative; height: 200px; margin-bottom: 2rem;">
+            <canvas id="riskGauge"></canvas>
+            <div id="gaugeText" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                <!-- Display the probability from our result dictionary -->
+                <h1 style="font-size: 3rem; font-weight: 700; margin: 0;">{{ result.probability }}%</h1>
+                <p style="font-size: 1.2rem; margin: 0;">High Risk Probability</p>
+            </div>
+        </div>
+
+        <h4>Overall Outcome:</h4>
+        <!-- Display the full outcome string (e.g., "High Risk (82.5%)") -->
+        <h3 class="{{ 'text-danger' if 'High Risk' in result.outcome else 'text-success' }} mb-4">{{ result.outcome }}</h3>
+
+        <hr style="border-color: rgba(255,255,255,0.3);">
+
+        <h4>Suggestions:</h4>
+        <ul class="list-group list-group-flush bg-transparent">
+            {% for suggestion in result.suggestions %}
+            <li class="list-group-item bg-transparent text-white">{{ suggestion }}</li>
+            {% endfor %}
+        </ul>
+        
+        <a href="{{ url_for('dashboard') }}" class="btn btn-light mt-4">Back to Dashboard</a>
+    </div>
+</div>
+
+<!-- Include the Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- JavaScript to create the gauge chart -->
+<script>
+    const predictionValue = {{ result.prediction_value }};
+    const probability = {{ result.probability }};
+    
+    const gaugeTitle = document.querySelector('#gaugeText h1');
+
+    let gaugeData, gaugeBackgroundColor, riskLabel;
+
+    // Use the probability to set the gauge fill level
+    gaugeData = [probability, 100 - probability];
+
+    if (predictionValue === 1) {
+        // High Risk
+        gaugeBackgroundColor = ['#dc3545', 'rgba(255, 255, 255, 0.2)']; // Red
+        riskLabel = 'High Risk';
+        gaugeTitle.style.color = '#dc3545';
+    } else {
+        // Low Risk
+        gaugeBackgroundColor = ['#198754', 'rgba(255, 255, 255, 0.2)']; // Green
+        riskLabel = 'Low Risk';
+        gaugeTitle.style.color = '#198754';
+    }
+
+    const ctx = document.getElementById('riskGauge').getContext('2d');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: [riskLabel, ''],
+            datasets: [{
+                data: gaugeData,
+                backgroundColor: gaugeBackgroundColor,
+                borderColor: 'rgba(255, 255, 255, 0.1)',
+                borderWidth: 1,
+                circumference: 180,
+                rotation: 270,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: false }
+            },
+            cutout: '70%'
+        }
+    });
+</script>
+{% endblock %}

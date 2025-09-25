@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center" style="padding: 8rem 0;">
+    <h1 class="display-3 fw-bold">Predictive Health Analytics</h1>
+    <p class="lead fs-4 my-4" style="color: #eee;">Leverage the power of AI to gain insights into your health. <br> Secure, fast, and intelligent predictions.</p>
+    <div class="mt-5">
+        <a class="btn btn-primary btn-lg" href="{{ url_for('login') }}" role="button">Get Started</a>
+        <a class="btn btn-light btn-lg" href="{{ url_for('register') }}" role="button">Create Account</a>
+    </div>
+</div>
+{% endblock %}

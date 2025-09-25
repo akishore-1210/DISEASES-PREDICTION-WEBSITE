@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="text-center mb-5">
+        <h1 class="display-5">Welcome, {{ username }}!</h1>
+        <p class="lead" style="color:#eee;">Choose a predictor to analyze your health data.</p>
+    </div>
+
+    <div class="row">
+        <!-- Diabetes Card -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center p-4">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m11.5 12 2-2-2-2"></path><path d="m14 14-2.5 2.5"></path><path d="m10 14-2.5 2.5"></path></svg>
+                    <h5 class="card-title">Diabetes Prediction</h5>
+                    <p class="card-text text-muted">Analyze glucose and BMI to predict diabetes risk.</p>
+                    <a href="{{ url_for('diabetes_page') }}" class="btn btn-light mt-auto">Launch Predictor</a>
+                </div>
+            </div>
+        </div>
+        <!-- Breast Cancer Card -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center p-4">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3"><path d="M12 2.69l.346.666L19.5 15.31l-7.5 4.33-7.5-4.33L11.654 3.356z"/><path d="M12 22V12"/><path d="M4.5 8.5l7.5 4.33"/><path d="M19.5 8.5L12 12.83"/></svg>
+                    <h5 class="card-title">Breast Cancer Prediction</h5>
+                    <p class="card-text text-muted">Assess tumor characteristics for malignancy risk.</p>
+                    <a href="{{ url_for('breast_cancer_page') }}" class="btn btn-light mt-auto">Launch Predictor</a>
+                </div>
+            </div>
+        </div>
+        <!-- Heart Disease Card -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center p-4">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    <h5 class="card-title">Heart Disease Prediction</h5>
+                    <p class="card-text text-muted">Evaluate cardiac health factors for disease risk.</p>
+                    <a href="{{ url_for('heart_disease_page') }}" class="btn btn-light mt-auto">Launch Predictor</a>
+                </div>
+            </div>
+        </div>
+        <!-- Liver Disease Card -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center p-4">
+                   <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-3"><path d="M20 13c0 5-3.5 7.5-7.69 7.95a5.26 5.26 0 0 1-1.07.05H12c-4.22 0-7.7-2.5-7.7-7.5S7.23 5.04 11.5 5c.42-.01.85-.01 1.28-.01 4.52 0 7.22 2.5 7.22 8Z"></path><path d="M18 13c0-3.5-1.5-6-4-6"></path></svg>
+                    <h5 class="card-title">Liver Disease Prediction</h5>
+                    <p class="card-text text-muted">Analyze bilirubin and enzymes for liver health.</p>
+                    <a href="{{ url_for('liver_disease_page') }}" class="btn btn-light mt-auto">Launch Predictor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Breast Cancer Prediction</h2>
+    <div class="card p-4 mx-auto" style="max-width: 500px;">
+        <!-- IMPORTANT: The action points to the correct prediction route -->
+        <form action="{{ url_for('predict_breast_cancer') }}" method="post">
+            
+            <div class="form-group mb-3">
+                <label for="concave points_worst">Concave Points (Worst)</label>
+                <input type="number" step="0.001" class="form-control" name="concave points_worst" placeholder="e.g., 0.186" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="perimeter_worst">Perimeter (Worst)</label>
+                <input type="number" step="0.1" class="form-control" name="perimeter_worst" placeholder="e.g., 184.6" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="radius_worst">Radius (Worst)</label>
+                <input type="number" step="0.1" class="form-control" name="radius_worst" placeholder="e.g., 25.4" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="area_worst">Area (Worst)</label>
+                <input type="number" step="0.1" class="form-control" name="area_worst" placeholder="e.g., 2010.0" required>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label for="concavity_worst">Concavity (Worst)</label>
+                <input type="number" step="0.01" class="form-control" name="concavity_worst" placeholder="e.g., 0.71" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Predict</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

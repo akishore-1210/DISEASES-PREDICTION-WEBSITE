@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Heart Disease Prediction</h2>
+    <div class="card p-4 mx-auto" style="max-width: 500px;">
+        <!-- IMPORTANT: The action points to the correct prediction route -->
+        <form action="{{ url_for('predict_heart_disease') }}" method="post">
+            
+            <div class="form-group mb-3">
+                <label for="cp">Chest Pain Type (0-3)</label>
+                <input type="number" class="form-control" name="cp" placeholder="e.g., 3" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="thalach">Maximum Heart Rate Achieved</label>
+                <input type="number" class="form-control" name="thalach" placeholder="e.g., 150" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="ca">Number of Major Vessels (0-3)</label>
+                <input type="number" class="form-control" name="ca" placeholder="e.g., 0" required>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="oldpeak">ST Depression</label>
+                <input type="number" step="0.1" class="form-control" name="oldpeak" placeholder="e.g., 1.8" required>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label for="thal">Thalassemia Type (1-3)</label>
+                <input type="number" class="form-control" name="thal" placeholder="e.g., 2" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Predict</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
